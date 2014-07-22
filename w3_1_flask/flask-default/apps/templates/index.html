@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>GET / POST</title>
+</head>
+<body>
+	<div>
+		통합검색엔진 : 
+		<form action="index" method="get">
+			<input type="text" name="text_get">
+			<input type="Submit" value="Submit">
+		</form>
+		구글 검색결과 보기 : <a target = "_blank" href = {{ variable_get_google }}>
+		{{variable_get}} (클릭)</a><br>
+		네이버 검색결과 보기 : <a target = "_blank" href = {{ variable_get_naver }}>
+		{{variable_get}} (클릭)</a><br>
+		다음 검색결과 보기 : <a target = "_blank" href = {{ variable_get_daum }}>
+		{{variable_get}} (클릭)</a>
+	</div>
+
+</body>
+</html>
