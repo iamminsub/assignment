@@ -28,20 +28,24 @@ for column in snail_array:
 ######## insert your algorithm here ########
 a = 0
 b = 0
+c = 0
 n = 1
 for i in range(25):
 	snail_array[a][b] = n
 	n += 1
-	if a == 0 and b < 4:	
+	if a == c and b < 4-c :	
 		b += 1     		#0,1 0,2 0,3 0,4 
-	elif a < 4 and b == 4:
+	elif a < 4-c and b == 4-c :
 		a += 1    		#1,4 2,4 3,4 4,4
-	elif a == 4 and b > 0:
+	elif a == 4-c and b > c:
 		b -= 1   		#4,3 4,2 4,1 4,0
-	elif a == 4 and b == 0:
-		a -= 1    		#3,0
-	elif 1 < a < 4 and b == 0:
+	elif a == 4-c and b == c:
+		a -= 1
+		c += 1    		#3,0
+	elif c < a < 4 and b == c-1:
 		a -= 1    		#2,0 1,0
+		
+"""
 	elif a == 1 and -1 < b < 3:
 		b += 1  		#1,1 1,2 1,3
 	elif 0 < a < 3 and b == 3:
@@ -52,6 +56,7 @@ for i in range(25):
 		a -= 1  		#2,1
 	else:
 		b += 1   		#2,2
+"""
 
 print 
 for column in snail_array:
