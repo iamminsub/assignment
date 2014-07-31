@@ -59,13 +59,13 @@ def modify_entry(idx):
 			break
 	return redirect(url_for('show_entries'))
 
-@app.route('/up/<idx>', methods = ['GET'])
-def up_entry(idx):
+@app.route('/up', methods = ['GET'])
+def up_entry():
 	dataStorage.database = sorted(dataStorage.database, key = lambda list: list['count'], reverse = True)
 	return redirect(url_for('show_entries'))
 
-@app.route('/down/<idx>', methods = ['GET'])
-def down_entry(idx):
+@app.route('/down', methods = ['GET'])
+def down_entry():
 	dataStorage.database = sorted(dataStorage.database, key = lambda list: list['count'], reverse = False)
 	return redirect(url_for('show_entries'))
 

@@ -10,7 +10,13 @@
 			<dd><input type="submit" value="POST">
 		</dl>
 	</form>
-			
+	<a href="{{ url_for('up_entry') }}">
+		<button>좋아요 높은순으로 보기</button>
+	</a>
+	<a href="{{ url_for('down_entry') }}">
+		<button>좋아요 낮은순으로 보기</button>
+	</a>
+
 	<ul class="entries">
 	{% for entry in entries %}
 		<li>
@@ -47,13 +53,7 @@
 			</div>
 		</a>
 		
-		<a href="{{ url_for('up_entry', idx = entry['num']) }}">
-			<button>좋아요 높은순으로 보기</button>
-		</a>
-		<a href="{{ url_for('down_entry', idx = entry['num']) }}">
-			<button>좋아요 낮은순으로 보기</button>
-		</a>
-
+		
 	{% else %}
 		<li>
 			<em>Unbelievable.  No entries here so far</em>
