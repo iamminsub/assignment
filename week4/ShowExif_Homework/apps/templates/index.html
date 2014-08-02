@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>사진 정보 표시하기</title>
+</head>
+<body>
+    <fieldset>
+        <a href="{{ url_for('list') }}">
+            <button>그림 목록 보기</button>
+        </a>
+        <form action="{{ url_for('start') }}" enctype="multipart/form-data" method="post">
+            <p>
+                정보를 보고 싶은 이미지를 업로드하세요.
+                <br />
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </p>
+        </form>
+    </fieldset>
+    {% block body %}{% endblock %}
+</body>
+</html>
