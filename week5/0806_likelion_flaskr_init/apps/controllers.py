@@ -2,9 +2,12 @@
 from flask import render_template, request, flash, url_for, redirect
 from apps import app, db
 from sqlalchemy import desc
+from setKST import *
 
 from apps.models import Article, Comment
-
+#
+#타임라인
+#
 @app.route('/', methods=['GET'])
 def article_list():
 	context = {}
@@ -12,6 +15,9 @@ def article_list():
 	context['article_list'] = Article.query.order_by(desc(Article.date_created)).all()
 
 	return render_template("home.html", context = context, active_tab='timeline')
+#
+#글수정
+#
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def article_update(id):
@@ -33,7 +39,9 @@ def article_update(id):
 
 		flash(u'게시글이 수정되었습니다.', 'success')
 		return redirect(url_for('article_detail', id=id))
-
+#
+#글쓰기
+#
 @app.route('/create', methods=['GET','POST'])
 def article_create():
 	if request.method =='GET':
@@ -46,6 +54,7 @@ def article_create():
 			author = article_data['author'],
 			category = article_data['category'],
 			content = article_data['content'],
+			date_created = setKST(datetime.now(),9)
 		)
 
 		db.session.add(article)
@@ -54,15 +63,19 @@ def article_create():
 		flash(u'게시글이 작성되었습니다.', 'success')
 
 		return redirect(url_for('article_list'))
-
-
+#
+#글 상세보기&댓글보기
+#
 @app.route('/detail/<int:id>', methods=['GET'])
 def article_detail(id):
 	article = Article.query.get(id)
 
-	comments = article.comments.order_by(desc(Comment.date_created)).all()
+	comments = article.comments.all()
 
 	return render_template('article/detail.html', article=article, comments = comments)
+#
+#글 삭제
+#
 
 @app.route('/delete/<int:id>', methods=['GET', 'POST'])
 def article_delete(id):
@@ -78,8 +91,8 @@ def article_delete(id):
 		flash(u'게시글을 삭제하였습니다.', 'success')
 		return redirect(url_for('article_list'))
 #
-# @comment controllers
 #
+#댓글쓰기
 @app.route('/comment/create/<int:article_id>', methods=['GET', 'POST'])
 def comment_create(article_id):
 	if request.method =='GET':
@@ -92,7 +105,8 @@ def comment_create(article_id):
 			author = comment_data['author'],
 			password= comment_data['password'],
 			email = comment_data['email'],
-			article = Article.query.get(article_id)
+			article = Article.query.get(article_id),
+			date_created = setKST(datetime.now(),9)
 		)
 
 		db.session.add(comment)
@@ -101,6 +115,38 @@ def comment_create(article_id):
 		flash(u'댓글이 작성되었습니다.', 'success')
 
 		return redirect(url_for('article_detail', id = article_id))
+#
+#댓글 좋아요
+#
+@app.route('/comment/like/<int:id>', methods=['GET', 'POST'])
+def comment_like(id):
+	comment = Comment.query.get(id)
+	comment.like += 1
+
+	db.session.commit()
+
+	id = comment.article_id
+
+	return redirect(url_for('article_detail', id=id))
+#
+#댓글 삭제
+#
+@app.route('/comment/delete/<int:id>', methods=['GET', 'POST'])
+def comment_delete(id):
+	comment = Comment.query.get(id)
+
+	if request.method == "GET":
+		return render_template('comment/delete.html')
+	elif request.method =="POST":
+		if request.form["password"] == comment.password:
+			db.session.delete(comment)
+			db.session.commit()
+
+			flash(u'댓글을 삭제하였습니다.', 'success')
+			return redirect(url_for('article_detail', id = comment.article_id))
+		elif request.form["password"] != comment.password:
+			flash(u'비밀번호가 틀렸습니다.', 'danger')
+			return redirect(url_for('comment_delete', id=id))
 #
 # @error Handlers
 #

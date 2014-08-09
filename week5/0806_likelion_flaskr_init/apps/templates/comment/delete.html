@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block contents %}
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <i class="fa fa-exclamation-triangle"></i> 댓글이 완전히 삭제되니, 다시 한번 확인하시기 바랍니다.
+</div>
+
+<div class="llCommentDelete">
+    <form role="form" method="post">
+        <div class="form-group">
+            <label for="password">내용</label>
+            <input type="text" name="password" class="form-control" id="password" placeholder="댓글 비밀번호를 입력하세요."/>
+            <br>
+            <button type="submit" class="btn btn-danger">댓글삭제</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

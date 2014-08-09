@@ -6,8 +6,11 @@
                     <a class="close" data-dismiss="alert" href="#">&times;</a>
                     {% if category == 'success' %}
                         <i class="icon-ok-sign"></i>
-                    {% endif %}
                     {{ message }}
+                    {% elif category == 'danger' %}
+                        <i class="fa fa-exclamation-triangle"></i>
+                    {{ message }}
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
