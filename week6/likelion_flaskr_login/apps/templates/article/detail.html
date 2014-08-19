@@ -19,7 +19,7 @@
                 {% for comment in comments %}
                     <div class="well well-sm">
                         <span class="badge">{{ loop.index }}</span> {{ comment.content }}
-                        {% if g.user_name %}
+                        {% if g.user_name == comment.author %}
                         <a href="{{ url_for('comment_delete', id=comment.id) }}">&times;</a>
                         {% endif %}
                         <span class="float-right">
