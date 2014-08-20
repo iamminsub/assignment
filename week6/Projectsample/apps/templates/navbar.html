@@ -1,0 +1,122 @@
+<div class = "navbar navbar-fixed-top">
+        <!---->
+        <!--로고-->
+        <!---->
+    <div class = "navbar-header">
+        <a href="{{ url_for('article_list')}}">MYmorning</a>
+    </div>
+    
+    <div class="navbar-collapse collapse">
+        <!---->
+        <!--로그인 메뉴-->
+        <!---->
+        <ul class="nav navbar-nav navbar-right">
+          <div class="user-nav">
+            <li>
+            {% if g.user_name %}
+            <a href="">{{g.user_email}}</a>
+            <a href="{{ url_for('log_out')}}">로그아웃</a>
+            {% else%}
+            <a href="{{ url_for('log_in') }}">로그인</a>
+            <a href="{{ url_for('user_join') }}">회원가입</a>
+            {% endif%}
+            </li>
+          </div>
+        </ul>
+        <!---->
+        <!--새페이지만들기 메뉴-->
+        <!---->
+        {% if g.user_name %}
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-menu">
+            <a class="">
+              <img src="{{ url_for('static', filename='images/new_page.png') }}" class="nav-menu-img">
+              <div class="">
+                
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!---->
+        <!--페이지불러오기 메뉴-->
+        <!---->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-menu">
+            <a id="" class="" data-toggle="">
+              <img src="{{ url_for('static', filename='images/load_page.png') }}" alt="" class="nav-menu-img">
+              <div class="">
+                
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!---->
+        <!--페이지저장 메뉴-->
+        <!---->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-menu">
+            <a id="" class="">
+              <img src="{{ url_for('static', filename='images/save_page.png') }}" class="nav-menu-img">
+              <div class="">
+                
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!---->
+        <!--페이지 편집 메뉴 + 슬라이드토글-->
+        <!---->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-menu">
+            <a id="" class="edit_menu">
+              <img src="{{ url_for('static', filename='images/edit_page.png') }}" class="nav-menu-img">
+            </a>
+            <div class="toolbar">
+                각종 편집툴 넣을 예정
+            </div>
+          </li>
+        </ul>
+        {% endif %}
+        <!---->
+        <!--이페이지를 홈페이지로-->
+        <!---->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-menu">
+            <a id="" class="" href="javascript:;" onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://minsubeditor.appspot.com');">
+              <img src="{{ url_for('static', filename='images/make_homepage.png') }}" class="nav-menu-img">
+              <div class="">
+                 
+              </div>
+            </a>
+          </li>
+        </ul>
+
+    </div>
+</div>
+
+<!--
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('article_list') }}">My Mornings</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li{% if active_tab == 'timeline' %} class="active"{% endif %}><a href="{{ url_for('article_list') }}">타임라인</a></li>
+
+            {% if g.user_name %}
+                <li{% if active_tab == 'article_create' %} class="active"{% endif %}><a href="{{ url_for('article_create') }}">글쓰기</a></li>
+                <li><a href="">{{ g.user_name }} 님 안녕하세요.</a></li>
+                <li><a href = "{{ url_for('log_out')}}">로그아웃</a></li>
+            {% else %}
+                <li{% if active_tab == 'log_in' %} class="active"{% endif %}><a href="{{ url_for('log_in') }}">로그인</a></li>
+                <li{% if active_tab == 'user_join' %} class="active"{% endif %}><a href="{{ url_for('user_join') }}">회원가입</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
+
+<a href="javascript:;" onclick="this.style.behavior = 'url(#default#homepage)'; this.setHomePage('시작페이지로 설정할 주소');"><img src="/res/home.gif" alt="시작페이지로">시작페이지</a>
+
+-->
+

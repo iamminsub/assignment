@@ -1,0 +1,82 @@
+.no-list {
+	padding: 10px;
+	text-align: center;
+}
+
+.float-right {
+	float: right;
+}
+
+.bottomButtons {
+	margin: 10px 0px 0px 0px;
+	padding: 10px;
+	text-align: center;
+}
+
+.llCommentList {
+	margin: 10px 0px 0px 0px;
+}
+.navbar-fixed-top {
+	background-color: rgba(244,244,244,0.5);
+}
+
+.user-nav {
+	width: 200px;
+	padding: 5px;
+}
+
+div.user-nav li{
+	background-color: #FFF;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+div.user-nav li a{
+	padding-left: 5px;
+	display: block;
+	background-color: #f7e432;
+	color: #5B5B5B;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	height: 20px;
+}
+
+.custom-container{
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 20px;
+	padding-top: 80px;
+}
+
+li.nav-menu{
+	width: 90px;
+	padding: 5px;
+	height: 70px;
+}
+
+li.nav-menu a{
+	cursor: pointer;
+	padding: 5px;
+}
+
+.navbar-nav .navbar-right:last-child{
+	margin-right:0px;
+}
+.nav-menu-img {
+	display: block;
+	margin: auto;
+	height: 50px;
+	width: auto;
+}
+
+.toolbar{
+	height:40px;
+	width:400px;
+	border-radius: 5px;
+	border:2px solid black;
+	padding:7px;
+	display:none;
+	background:#FFF;
+}

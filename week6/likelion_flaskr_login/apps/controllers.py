@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from kstime import kstime
-from flask import render_template, request, redirect, url_for, flash, g, session
+from flask import render_template, request, redirect, url_for, flash, g, session, jsonify
 from werkzeug.security import generate_password_hash, \
 	 check_password_hash
 from sqlalchemy import desc,distinct,func
@@ -19,6 +19,8 @@ def before_request():
         g.user_name = session['user_name']
         g.user_email = session['user_email']
         g.user_id = session['user_id']
+
+
 
 #
 # @index & article list
@@ -107,6 +109,15 @@ def article_like(id):
 
 	return redirect(url_for('article_detail', id=id))
 
+@app.route('/article/detail_like', methods=['GET'])
+def article_like_ajax():
+	id = request.args.get('id', 0, type=int)
+	article = Article.query.get(id)
+	article.like += 1
+
+	db.session.commit()
+
+	return jsonify(id=id)
 
 #
 # @comment controllers
